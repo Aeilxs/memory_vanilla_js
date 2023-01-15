@@ -12,14 +12,11 @@ const app = {
   /**
    * Gère la logique suite à un clic du joueur
    * @param {event} event
-   * @returns
    */
   handleClick: (event) => {
     if (event.target.classList.contains("img")) return;
-
-    const card = event.target.childNodes[0].firstChild.classList[1];
+    app.selected.push(event.target.childNodes[0].firstChild);
     event.target.classList.add("flipped");
-    app.selected.push(card);
 
     if (app.selected.length === 2) {
       app.isMatch(app.selected) ? app.hideMatch() : app.resetSelectedCard();
@@ -107,7 +104,9 @@ const app = {
    */
   isMatch: (array) => {
     if (array.length < 2) return;
-    const match = array[0] === array[1];
+    const match =
+      array[0].classList[1] === array[1].classList[1] &&
+      array[0].id !== array[1].id;
     app.selected = [];
     return match;
   },
@@ -157,7 +156,7 @@ const app = {
     const board = app.drawElement("div", document.querySelector(".container"), {
       id: "game",
     });
-    app.cards.forEach((item) => {
+    app.cards.forEach((item, index) => {
       const card = app.drawElement("div", board, {
         className: "card ",
       });
@@ -169,6 +168,7 @@ const app = {
       app.drawElement("div", inner, { className: "card-front" });
       const img = app.drawElement("img", back, {
         src: item.img,
+        id: index,
         className: `img ${item.name}`,
       });
     });
