@@ -9,6 +9,11 @@ const app = {
     app.drawBoard();
   },
 
+  /**
+   * Gère la logique suite à un clic du joueur
+   * @param {event} event
+   * @returns
+   */
   handleClick: (event) => {
     if (event.target.classList.contains("img")) return;
 
@@ -21,10 +26,17 @@ const app = {
     }
   },
 
+  /**
+   * Vérifie si la partie est gagnée
+   * @return {boolean}
+   */
   isWin: () => {
     return document.querySelectorAll(".match").length === 16;
   },
 
+  /**
+   * Affiche le menu après la victoire
+   */
   showMenu: () => {
     setTimeout(() => {
       document.getElementById("game").classList.add("fade");
@@ -38,6 +50,9 @@ const app = {
       .addEventListener("click", app.restartGame);
   },
 
+  /**
+   * Permet de recommencer le jeu après une victoire
+   */
   restartGame: () => {
     document.querySelector(".menu").classList.add("hide");
     document.querySelector(".menu").classList.remove("show");
@@ -47,6 +62,9 @@ const app = {
     app.init();
   },
 
+  /**
+   * Retourne les cartes si le joueur s'est trompé
+   */
   resetSelectedCard: () => {
     app.preventSelect();
     setTimeout(() => {
@@ -57,6 +75,10 @@ const app = {
     }, 850);
   },
 
+  /**
+   * Fais disparaitre les cartes identiques et ajoute un dataset permettant d'éviter le lancement
+   * d'une animation sur app.resetSelectCard()
+   */
   hideMatch: () => {
     app.preventSelect();
     setTimeout(() => {
@@ -69,12 +91,20 @@ const app = {
     }, 850);
   },
 
+  /**
+   * Empêche de sélectionner pendant les différentes animations ce qui causait des bugs
+   */
   preventSelect: () => {
     document
       .querySelectorAll(".card-inner")
       .forEach((card) => card.classList.toggle("preventSelect"));
   },
 
+  /**
+   * Vérifie si les deux cartes sélectionnées par le joueur sont indentiques
+   * @param {array} array
+   * @returns
+   */
   isMatch: (array) => {
     if (array.length < 2) return;
     const match = array[0] === array[1];
@@ -82,6 +112,10 @@ const app = {
     return match;
   },
 
+  /**
+   * Créer un tableau d'objet unique
+   * @returns {array}
+   */
   createArray: () => {
     while (app.cards.length !== 8) {
       const card = app.selectValidCard();
