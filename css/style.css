@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+  background-color: #282a36;
+}
+
+.container {
+  margin: 0 auto;
+  width: 600px;
+}
+
+.header-title {
+  text-align: center;
+  color: #fff;
+  font-size: 2rem;
+  margin: 2rem;
+}
+
+#game {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  background-color: #44475a;
+  border-radius: 5px;
+  border: 1px solid #6272a4;
+  padding: 5px;
+}
+
+.fade {
+  transition: 1s;
+  opacity: 0;
+}
+
+.img {
+  width: 100%;
+}
+
+.card {
+  background-color: transparent;
+  border: 1px solid #6272a4;
+  perspective: 1000px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.card:hover {
+  cursor: pointer;
+  border: 1px solid #fff;
+}
+
+.card-inner {
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  background-color: #505368;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.card-inner:hover {
+  background-color: #3e4559;
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.match img {
+  transition: 1s;
+  opacity: 0;
+}
+
+.match {
+  background-color: #44475a;
+  transition: 1s;
+}
+
+.preventSelect {
+  pointer-events: none;
+}
+
+.menu {
+  opacity: 0;
+  padding: 2rem;
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid #6272a4;
+  background-color: #44475a;
+  text-align: center;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  transition: 0.9s;
+  opacity: 1;
+}
+
+.menu-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.menu-button {
+  padding: 0.5rem;
+  cursor: pointer;
+}
